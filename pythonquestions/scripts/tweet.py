@@ -7,6 +7,7 @@ def tweet(since='1d'):
     mongo.db.questions.stackoverflow.ensure_index([('tweeted', 1)])
 
     cursor = mongo.db.questions.stackoverflow.find({'tweeted': {'$exists': False}})
+    count = 0
     for question in list(cursor):
         url = 'http://pyq.io/so/%s' % question['_id']
         title = question['title']
@@ -23,9 +24,9 @@ def tweet(since='1d'):
             {'$set': {'tweeted': True}},
             safe=True)
 
-        break
+        count += 1
 
-    print "Synced", count, "questions"
+    print "Tweeted", count, "questions"
 
 
 if __name__ == '__main__':
