@@ -1,5 +1,5 @@
 Flask
-Flask-PyMongo
+Flask-PyMongo >= 0.1.1
 Flask-Tweepy
 Flask-Script
 requests
